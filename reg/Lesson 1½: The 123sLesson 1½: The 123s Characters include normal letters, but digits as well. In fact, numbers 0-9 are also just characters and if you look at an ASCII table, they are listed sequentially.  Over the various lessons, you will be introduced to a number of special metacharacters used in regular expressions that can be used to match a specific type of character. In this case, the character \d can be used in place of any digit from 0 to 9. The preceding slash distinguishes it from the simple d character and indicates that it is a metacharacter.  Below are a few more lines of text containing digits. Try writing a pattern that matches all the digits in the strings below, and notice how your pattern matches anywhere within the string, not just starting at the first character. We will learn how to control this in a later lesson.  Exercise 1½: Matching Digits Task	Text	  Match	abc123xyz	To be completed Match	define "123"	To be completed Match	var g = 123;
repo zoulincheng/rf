@@ -10,3 +10,6 @@ Task	Text
 Match	abc123xyz	To be completed
 Match	define "123"	To be completed
 Match	var g = 123;
+
+
+result \d+  \d{3} \d*
