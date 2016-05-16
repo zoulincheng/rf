@@ -1,15 +1,16 @@
-Problem 1: Matching a decimal numbers
-At first glance, writing a regular expression to match a number should be easy right?
+Problem 2: Matching phone numbers
+Validating phone numbers is another tricky task depending on the type of input that you get. Having phone numbers from out of the state which require an area code, or international numbers which require a prefix will add complexity to the regular expression, as does the individual preferences that people have for entering phone numbers (some put dashes or whitespace while others do not for example).
 
-We have the \d special character to match any digit, and all we need to do is match the decimal point right? For simple numbers, that may be right, but when working with scientific or financial numbers, you often have to deal with positive and negative numbers, significant digits, exponents, and even different representations (like the comma used to separate thousands and millions).
+Below are a few phone numbers that you might encounter when using real data, write a single regular expressions that matches the number and captures the proper area code.
 
-Below are a few different formats of numbers that you might encounter. Notice how you will have to match the decimal point itself and not an arbitrary character using the dot metacharacter. If you are having trouble skipping the last number, notice how that number ends the line compared to the rest.
+Exercise 2: Matching Phone Numbers
+Task	Text	Capture Groups	 
+Capture	415-555-1234	415	Success
+Capture	650-555-2345	650	Success
+Capture	(416)555-3456	416	Success
+Capture	202 555 4567	202	Success
+Capture	4035555678	403	Success
+Capture	1 416 555 9292	416	Success
 
-Exercise 1: Matching Numbers
-Task	Text	 
-Match	3.14529	
-Match	-255.34	
-Match	128	
-Match	1.9e10	
-Match	123,340.00	
-Skip	720p
+(\d{3})
+
