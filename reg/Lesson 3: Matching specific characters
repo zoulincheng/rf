@@ -1,0 +1,19 @@
+Lesson 3: Matching specific characters
+The dot metacharacter from the last lesson is pretty powerful, but sometimes too powerful. If we are matching phone numbers for example, we don't want to validate the letters "(abc) def-ghij" as being a valid number!
+
+There is a method for matching specific characters using regular expressions, by defining them inside square brackets. For example, the pattern [abc] will only match a single a, b, or c letter and nothing else.
+
+Below are a couple lines, where we only want to match the first three strings, but not the last three strings. Notice how we can't avoid matching the last three strings if we use the dot, but have to specifically define what letters to match using the notation above.
+
+Exercise 3: Matching Characters
+Task	Text	 
+Match	can	
+Match	man	
+Match	fan	
+Skip	dan	
+Skip	ran	
+Skip	pan
+
+
+
+result:[cmf]
