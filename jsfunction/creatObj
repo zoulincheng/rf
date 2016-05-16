@@ -30,3 +30,12 @@ var BlogController = (function() {
 
 console.log(BlogController);
 //Object { index: index(), show: show(), create: create(), update: update(), destroy: destroy() }
+
+equal to =>
+var BlogController = {
+  index: Views.index,
+  show: Views.show,
+  create: Db.create,
+  update: Db.update,
+  destroy: Db.destroy,
+};
