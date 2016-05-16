@@ -1,0 +1,15 @@
+Problem 1: Matching a decimal numbers
+At first glance, writing a regular expression to match a number should be easy right?
+
+We have the \d special character to match any digit, and all we need to do is match the decimal point right? For simple numbers, that may be right, but when working with scientific or financial numbers, you often have to deal with positive and negative numbers, significant digits, exponents, and even different representations (like the comma used to separate thousands and millions).
+
+Below are a few different formats of numbers that you might encounter. Notice how you will have to match the decimal point itself and not an arbitrary character using the dot metacharacter. If you are having trouble skipping the last number, notice how that number ends the line compared to the rest.
+
+Exercise 1: Matching Numbers
+Task	Text	 
+Match	3.14529	
+Match	-255.34	
+Match	128	
+Match	1.9e10	
+Match	123,340.00	
+Skip	720p
