@@ -17,5 +17,5 @@ Match	The FCC had to censor the network for saying &$#*@!.
 
 
 
-^(The.*)
+(The.?.?\b)(\b.{3,5}\b)\s*(\b.{3,5}\b)\s(\b.{2,10}\b)(\b.{2,})
 
