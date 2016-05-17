@@ -1,0 +1,16 @@
+Problem 2: Matching phone numbers
+Validating phone numbers is another tricky task depending on the type of input that you get. Having phone numbers from out of the state which require an area code, or international numbers which require a prefix will add complexity to the regular expression, as does the individual preferences that people have for entering phone numbers (some put dashes or whitespace while others do not for example).
+
+Below are a few phone numbers that you might encounter when using real data, write a single regular expressions that matches the number and captures the proper area code.
+
+Exercise 2: Matching Phone Numbers
+Task	Text	Capture Groups	 
+Capture	415-555-1234	415	Success
+Capture	650-555-2345	650	Success
+Capture	(416)555-3456	416	Success
+Capture	202 555 4567	202	Success
+Capture	4035555678	403	Success
+Capture	1 416 555 9292	416	Success
+
+(\d{3})
+

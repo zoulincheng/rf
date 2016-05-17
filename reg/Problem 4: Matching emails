@@ -1,0 +1,19 @@
+When you are dealing with HTML forms, it's often useful to validate the form input against regular expressions. In particular, emails are difficult to match correctly due to the complexity of the specification and I would recommend using a built-in language or framework function instead of rolling your own. However, you can build a pretty robust regular expression that matches a great deal of common emails pretty easily using what we've learned so far.
+
+One thing to watch out for is that many people use plus addressing for one time use, such as "name+filter@gmail.com", which gets directly to "name@gmail.com" but can be filtered with the extra information. In addition, some domains have more than one component, for example, you can register a domain at "hellokitty.hk.com" and have an email with the form "ilove@hellokitty.hk.com", so you will have to be careful when matching the domain portion of the email.
+
+Below are a few common emails, in this example, try to capture the name of the email, excluding the filter (+ character and afterwards) and domain (@ character and afterwards).
+
+Exercise 3: Matching Emails
+Task	Text	Capture Groups	 
+Capture	tom@hogwarts.com	tom	To be completed
+Capture	tom.riddle@hogwarts.com	tom.riddle	
+Capture	tom.riddle+regexone@hogwarts.com	tom.riddle	
+Capture	tom@hogwarts.eu.com	tom	
+Capture	potter@hogwarts.com	potter	
+Capture	harry@hogwarts.com	harry	
+Capture	hermione+regexone@hogwarts.com	hermione
+
+
+
+reg:

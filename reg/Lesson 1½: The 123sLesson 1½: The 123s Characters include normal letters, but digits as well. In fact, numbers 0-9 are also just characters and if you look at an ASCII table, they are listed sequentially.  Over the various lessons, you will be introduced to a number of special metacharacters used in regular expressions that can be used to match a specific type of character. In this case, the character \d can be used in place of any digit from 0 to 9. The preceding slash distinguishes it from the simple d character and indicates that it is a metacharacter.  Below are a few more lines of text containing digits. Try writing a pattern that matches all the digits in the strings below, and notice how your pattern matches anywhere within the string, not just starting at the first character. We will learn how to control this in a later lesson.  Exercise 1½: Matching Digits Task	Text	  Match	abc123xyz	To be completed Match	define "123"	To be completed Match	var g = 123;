@@ -1,0 +1,15 @@
+Lesson 1½: The 123s
+Characters include normal letters, but digits as well. In fact, numbers 0-9 are also just characters and if you look at an ASCII table, they are listed sequentially.
+
+Over the various lessons, you will be introduced to a number of special metacharacters used in regular expressions that can be used to match a specific type of character. In this case, the character \d can be used in place of any digit from 0 to 9. The preceding slash distinguishes it from the simple d character and indicates that it is a metacharacter.
+
+Below are a few more lines of text containing digits. Try writing a pattern that matches all the digits in the strings below, and notice how your pattern matches anywhere within the string, not just starting at the first character. We will learn how to control this in a later lesson.
+
+Exercise 1½: Matching Digits
+Task	Text	 
+Match	abc123xyz	To be completed
+Match	define "123"	To be completed
+Match	var g = 123;
+
+
+result \d+  \d{3} \d*
