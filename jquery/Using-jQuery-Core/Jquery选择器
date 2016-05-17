@@ -1,0 +1,761 @@
+
+选择器
+
+有了CSS选择器基础后，看jQuery的选择器就很简单了，不再详细一一说明
+
+
+
+基本选择器   
+$(‘*') 匹配页面所有元素 
+$(‘#id') id选择器 
+$(‘.class') 类选择器 
+$(‘element') 标签选择器 
+    
+组合/层次选择器   
+$(‘E,F') 多元素选择器，用”,分隔，同时匹配元素E或元素F 
+$(‘E F') 后代选择器，用空格分隔，匹配E元素所有的后代（不只是子元素、子元素向下递归）元素F 
+$(E>F) 子元素选择器，用”>”分隔，匹配E元素的所有直接子元素 
+$(‘E+F') 直接相邻选择器，匹配E元素之后的相邻的同级元素F 
+$(‘E~F') 普通相邻选择器（弟弟选择器），匹配E元素之后的同级元素F（无论直接相邻与否） 
+$(‘.class1.class2') 匹配类名中既包含class1又包含class2的元素 
+基本过滤选择器   
+$("E:first") 所有E中的第一个 
+$("E:last") 所有E中的最后一个 
+$("E:not(selector)") 按照selector过滤E 
+$("E:even")             所有E中index是偶数 
+$("E:odd")              所有E中index是奇数 
+$("E:eq(n)")           所有E中index为n的元素 
+$("E:gt(n)")           所有E中index大于n的元素 
+$("E:ll(n)")            所有E中index小于n的元素 
+$(":header") 选择h1~h7 元素 
+$("div:animated") 选择正在执行动画效果的元素 
+内容过滤器   
+$(‘E:contains(value)') 内容中包含value值的元素 
+$(‘E:empty') 内容为空的元素 
+$(‘E:has(F)') 子元素中有F的元素，$(‘div:has(a)'):包含a标签的div 
+$(‘E: parent') 父元素是E的元素，$(‘td: parent'):父元素是td的元素 
+可视化选择器   
+$(‘E:hidden') 所有被隐藏的E 
+$(‘E:visible') 所有可见的E 
+属性过滤选择器   
+$(‘E[attr]') 含有属性attr的E 
+$(‘E[attr=value]') 属性attr=value的E 
+$(‘E[attr !=value]') 属性attr！=value的E 
+$(‘E[attr ^=value]') 属性attr以value开头的E 
+$(‘E[attr $=value]') 属性attr以value结尾的E 
+$(‘E[attr *=value]') 属性attr包含value的E 
+$(‘E[attr][attr *=value]') 可以连用 
+子元素过滤器   
+$(‘E:nth-child(n)') E的第n个子节点 
+$(‘E:nth-child(3n+1)') E的index符合3n+1表达式的子节点 
+$(‘E:nth-child(even)') E的index为偶数的子节点 
+$(‘E:nth-child(odd)') E的index为奇数的子节点 
+$(‘E:first-clild') 所有E的第一个子节点 
+$(‘E:last-clild') 所有E的最后一个子节点 
+$(‘E:only-clild') 只有唯一子节点的E的子节点 
+表单元素选择器   
+$(‘E:type') 特定类型的input 
+$(‘:checked') 被选中的checkbox或radio 
+$(‘option: selected') 被选中的option 
+
+筛选方法
+
+.find(selector) 查找集合每个元素的子节点
+
+Get the descendants(子节点) of each element in the current set of matched elements, filtered by a selector, jQuery object, or element.
+
+
+复制代码 代码如下:
+
+$('li.item-ii').find('li').css('background-color', 'red');
+
+
+.filter(selector) 过滤当前集合内元素
+
+Reduce(减少) the set of matched elements to those that match the selector or pass the function's test.
+
+
+复制代码 代码如下:
+
+$('li').filter(':even').css('background-color', 'red');
+
+
+基本方法
+
+.ready(handler) 文档加载完成后执行的方法，区别于window.onload
+
+Specify a function to execute when the DOM is fully loaded.
+
+
+复制代码 代码如下:
+
+
+$(document).ready(function() {
+  // Handler for .ready() called.
+});
+
+
+
+.each(function(index,element)) 遍历集合内每个元素
+
+Iterate over a jQuery object, executing a function for each matched element.
+
+
+复制代码 代码如下:
+
+
+$("li" ).each(function( index ) {
+  console.log( index + ": " + $(this).text() );
+});
+
+
+
+jQuery.extend( target [, object1 ] [, objectN ] ) 合并对象
+
+Merge the contents of two or more objects together into the first object.
+
+
+复制代码 代码如下:
+
+var object = $.extend({}, object1, object2);
+
+
+获取元素
+
+.eq(index) 按index获取jQuery对象集合中的某个特定jQuery对象
+
+Reduce the set of matched elements to the one at the specified index.
+
+.eq(-index) 按逆序index获取jQuery对象集合中的某个特定jQuery对象
+
+An integer indicating the position of the element, counting backwards from the last element in the set.
+
+
+复制代码 代码如下:
+
+$( "li" ).eq( 2 ).css( "background-color", "red" );
+
+ 
+
+.get(index) 获取jQuery集合对象中某个特定index的DOM对象（将jQuery对象自动转换为DOM对象）
+
+Retrieve one of the DOM elements matched by the jQuery object.
+
+
+复制代码 代码如下:
+
+console.log( $( "li" ).get( -1 ) );
+
+
+.get() 将jQuery集合对象转换为DOM集合对象并返回
+
+Retrieve the DOM elements matched by the jQuery object.
+
+
+复制代码 代码如下:
+
+console.log( $( "li" ).get() );
+
+
+.index() / .index(selector)/ .index(element) 从给定集合中查找特定元素index
+
+Search for a given element from among the matched elements.
+
+1. 没参数返回第一个元素index
+
+2.如果参数是DOM对象或者jQuery对象，则返回参数在集合中的index
+
+3.如果参数是选择器，返回第一个匹配元素index，没有找到返回-1
+
+
+复制代码 代码如下:
+
+
+var listItem = $( "#bar" );
+alert( "Index: " + $( "li" ).index( listItem ) );
+
+
+
+.clone（[withDataAndEvents][,deepWithDataAndEvents]) 创建jQuery集合的一份deep copy（子元素也会被复制），默认不copy对象的shuju和绑定事件
+
+Create a deep copy of the set of matched elements.
+
+
+复制代码 代码如下:
+
+$( ".hello" ).clone().appendTo( ".goodbye" );
+
+
+.parent([selector]) 获取jQuery对象符合selector的父元素
+
+Get the parent of each element in the current set of matched elements, optionally filtered by a selector.
+
+
+复制代码 代码如下:
+
+$( "li.item-a" ).parent('ul').css( "background-color", "red" );
+
+
+.parents([selector]) 获取jQuery对象符合选择器的祖先元素
+
+Get the ancestors of each element in the current set of matched elements, optionally filtered by a selector.
+
+
+复制代码 代码如下:
+
+$( "span.selected" ) .parents( "div" ) .css( "border", "2px red solid" )
+
+
+插入元素
+
+.append(content[,content]) / .append(function(index,html)) 向对象尾部追加内容
+
+Insert content, specified by the parameter, to the end of each element in the set of matched elements.
+
+1. 可以一次添加多个内容，内容可以是DOM对象、HTML string、 jQuery对象
+
+2. 如果参数是function，function可以返回DOM对象、HTML string、 jQuery对象，参数是集合中的元素位置与原来的html值
+
+
+复制代码 代码如下:
+
+
+$( ".inner" ).append( "<p>Test</p>" );
+$( "body" ).append( $newdiv1, [ newdiv2, existingdiv1 ] );
+$( "p" ).append( "<strong>Hello</strong>" );
+$( "p" ).append( $( "strong" ) );
+$( "p" ).append( document.createTextNode( "Hello" ) );
+
+
+
+.appendTo(target) 把对象插入到目标元素尾部，目标元素可以是selector, DOM对象, HTML string, 元素集合,jQuery对象;
+
+Insert every element in the set of matched elements to the end of the target.
+
+
+复制代码 代码如下:
+
+
+$( "h2" ).appendTo( $( ".container" ) );
+$( "<p>Test</p>" ).appendTo( ".inner" );
+
+
+
+.prepend(content[,content]) / .prepend(function(index,html)) 向对象头部追加内容，用法和append类似
+
+Insert content, specified by the parameter, to the beginning of each element in the set of matched elements.
+
+
+复制代码 代码如下:
+
+$( ".inner" ).prepend( "<p>Test</p>" );
+
+
+.prependTo(target) 把对象插入到目标元素头部，用法和prepend类似
+
+Insert every element in the set of matched elements to the beginning of the target.
+
+
+复制代码 代码如下:
+
+$( "<p>Test</p>" ).prependTo( ".inner" );
+
+
+.before([content][,content]) / .before(function) 在对象前面(不是头部，而是外面，和对象并列同级)插入内容，参数和append类似
+
+Insert content, specified by the parameter, before each element in the set of matched elements.
+
+
+复制代码 代码如下:
+
+
+$( ".inner" ).before( "<p>Test</p>" );
+$( ".container" ).before( $( "h2" ) );
+$( "p" ).first().before( newdiv1, [ newdiv2, existingdiv1 ] );
+$( "p" ).before( "<b>Hello</b>" );
+$( "p" ).before( document.createTextNode( "Hello" ) );
+
+
+
+.insertBefore(target) 把对象插入到target之前（同样不是头部，是同级）
+
+Insert every element in the set of matched elements before the target.
+
+
+复制代码 代码如下:
+
+$( "h2" ).insertBefore( $( ".container" ) );
+
+
+.after([content][,content]) / .after(function（index）) 和before相反，在对象后面(不是尾部，而是外面，和对象并列同级)插入内容，参数和append类似
+
+Insert content, specified by the parameter, after each element in the set of matched elements.
+
+
+复制代码 代码如下:
+
+
+$( ".inner" ).after( "<p>Test</p>" );
+$( "p" ).after( document.createTextNode( "Hello" ) );
+
+
+
+.insertAfter(target) 和insertBefore相反，把对象插入到target之后（同样不是尾部，是同级）
+
+Insert every element in the set of matched elements after the target.
+
+
+复制代码 代码如下:
+
+
+$( "<p>Test</p>" ).insertAfter( ".inner" );
+$( "p" ).insertAfter( "#foo" );
+
+
+
+包裹元素
+
+.wrap(wrappingElement) / .wrap(function(index)) 为每个对象包裹一层HTML结构，可以是selector, element, HTML string, jQuery object
+
+Wrap an HTML structure around each element in the set of matched elements.
+
+
+复制代码 代码如下:
+
+
+<div class="container">
+  <div class="inner">Hello</div>
+  <div class="inner">Goodbye</div>
+</div>$( ".inner" ).wrap( "<div class='new'></div>" );
+<div class="container">
+  <div class="new">
+    <div class="inner">Hello</div>
+  </div>
+  <div class="new">
+    <div class="inner">Goodbye</div>
+  </div>
+</div>
+
+
+
+.wrapAll(wrappingElement) 把所有匹配对象包裹在同一个HTML结构中
+
+Wrap an HTML structure around all elements in the set of matched elements.
+
+
+复制代码 代码如下:
+
+
+<div class="container">
+  <div class="inner">Hello</div>
+  <div class="inner">Goodbye</div>
+</div>$( ".inner" ).wrapAll( "<div class='new' />");<div class="container">
+  <div class="new">
+    <div class="inner">Hello</div>
+    <div class="inner">Goodbye</div>
+  </div>
+</div>
+
+
+
+.wrapInner(wrappingElement) / .wrapInner(function(index)) 包裹匹配元素内容，这个不好说，一看例子就懂
+
+Wrap an HTML structure around the content of each element in the set of matched elements.
+
+
+复制代码 代码如下:
+
+
+<div class="container">
+  <div class="inner">Hello</div>
+  <div class="inner">Goodbye</div>
+</div>$( ".inner" ).wrapInner( "<div class='new'></div>");
+<div class="container">
+  <div class="inner">
+    <div class="new">Hello</div>
+  </div>
+  <div class="inner">
+    <div class="new">Goodbye</div>
+  </div>
+</div>
+
+
+
+.unwap() 把DOM元素的parent移除
+
+Remove the parents of the set of matched elements from the DOM, leaving the matched elements in their place.
+
+
+复制代码 代码如下:
+
+pTags = $( "p" ).unwrap();
+
+
+属性方法
+
+.val() 获取元素的value值
+
+Get the current value of the first element in the set of matched elements.
+
+
+复制代码 代码如下:
+
+
+$( "input:checkbox:checked" ).val();
+
+
+
+.val(value) /.val(function(index,value)) 为元素设置值，index和value同样是指在为集合中每个元素设置的时候该元素的index和原value值
+
+Set the value of each element in the set of matched elements.
+
+
+复制代码 代码如下:
+
+
+$( "input" ).val( ‘hello' );
+$( "input" ).on( "blur", function() {
+  $( this ).val(function( i, val ) {
+    return val.toUpperCase();
+  });
+});
+
+
+
+.attr(attributeName) 获取元素特定属性的值
+
+Get the value of an attribute for the first element in the set of matched elements.
+
+
+复制代码 代码如下:
+
+
+var title = $( "em" ).attr( "title" );
+
+
+
+.attr(attributeName,value) / .attr(attributesJson) / .attr( attributeName, function(index, attr) ) 为元素属性赋值
+
+Set one or more attributes for the set of matched elements.
+
+
+复制代码 代码如下:
+
+
+$( "#greatphoto" ).attr( "alt", "Beijing Brush Seller" );
+
+$( "#greatphoto" ).attr({
+  alt: "Beijing Brush Seller",
+  title: "photo by Kelly Clark"
+});
+
+$( "#greatphoto" ).attr( "title", function( i, val ) {
+  return val + " - photo by Kelly Clark";
+});
+
+
+
+.prop( propertyName ) 获取元素某特性值
+
+Get the value of a property for the first element in the set of matched elements.
+
+
+复制代码 代码如下:
+
+
+$( elem ).prop( "checked" )
+
+
+
+.prop(propertyName,value) / .prop(propertiesJson) / .prop(propertyName,function(index,oldPropertyValue)) 为元素特性赋值
+
+Set one or more properties for the set of matched elements.
+
+
+复制代码 代码如下:
+
+
+$( "input" ).prop( "checked", true );
+
+$( "input[type='checkbox']" ).prop( "checked", function( i, val ) {
+  return !val;
+});
+
+$( "input[type='checkbox']" ).prop({
+  disabled: true
+});
+
+
+
+关于attribute 和 property区别可以看看 jQuery的attr与prop
+
+
+.data(key,value) / .value(json) 为HTML DOM元素添加数据，HTML5元素 已有data-*属性
+
+Store arbitrary data associated with the matched elements.The .data() method allows us to attach data of any type to DOM elements in a way that is safe from circular references and therefore from memory leaks.
+
+
+复制代码 代码如下:
+
+
+$( "body" ).data( "foo", 52 );
+$( "body" ).data( "bar", { myType: "test", count: 40 } );
+$( "body" ).data( { baz: [ 1, 2, 3 ] } );
+
+
+
+.data(key) / .data() 获取获取data设置的数据或者HTML5 data-*属性中的数据
+
+Return the value at the named data store for the first element in the jQuery collection, as set by data(name, value) or by an HTML5 data-* attribute.
+
+
+复制代码 代码如下:
+
+
+alert( $( "body" ).data( "foo" ) );
+alert( $( "body" ).data() );
+
+alert( $( "body" ).data( "foo" ) ); // undefined
+$( "body" ).data( "bar", "foobar" );
+alert( $( "body" ).data( "bar" ) ); // foobar
+
+
+
+CSS方法
+.hasClass(calssName) 检查元素是否包含某个class，返回true/false
+
+Determine whether any of the matched elements are assigned the given class.
+
+
+复制代码 代码如下:
+
+$( "#mydiv" ).hasClass( "foo" )
+
+
+.addClass(className) / .addClass(function(index,currentClass)) 为元素添加class，不是覆盖原class，是追加，也不会检查重复
+
+Adds the specified class(es) to each of the set of matched elements.
+
+
+复制代码 代码如下:
+
+
+$( "p" ).addClass( "myClass yourClass" );
+
+$( "ul li" ).addClass(function( index ) {
+  return "item-" + index;
+});
+
+
+
+removeClass([className]) / ,removeClass(function(index,class)) 移除元素单个/多个/所有class
+
+Remove a single class, multiple classes, or all classes from each element in the set of matched elements.
+
+
+复制代码 代码如下:
+
+
+$( "p" ).removeClass( "myClass yourClass" );
+$( "li:last" ).removeClass(function() {
+  return $( this ).prev().attr( "class" );
+});
+
+
+
+.toggleClass(className) /.toggleClass(className,switch) /  .toggleClass([switch]) / .toggleClass( function(index, class, switch) [, switch ] ) toggle是切换的意思，方法用于切换，switch是个bool类型值，这个看例子就明白
+
+Add or remove one or more classes from each element in the set of matched elements, depending on either the class's presence or the value of the switch argument.
+
+<div class="tumble">Some text.</div>
+
+第一次执行
+
+
+复制代码 代码如下:
+
+
+$( "div.tumble" ).toggleClass( "bounce" )
+<div class="tumble bounce">Some text.</div>
+
+
+第二次执行
+
+
+复制代码 代码如下:
+
+
+$( "div.tumble" ).toggleClass( "bounce" )
+<div class="tumble">Some text.</div>
+
+
+
+
+复制代码 代码如下:
+
+
+$( "#foo" ).toggleClass( className, addOrRemove );
+
+// 两种写法意思一样
+
+if ( addOrRemove ) {
+  $( "#foo" ).addClass( className );
+} else {
+  $( "#foo" ).removeClass( className );
+}
+
+
+
+
+复制代码 代码如下:
+
+
+$( "div.foo" ).toggleClass(function() {
+  if ( $( this ).parent().is( ".bar" ) ) {
+    return "happy";
+  } else {
+    return "sad";
+  }
+});
+
+
+
+.css(propertyName) / .css(propertyNames) 获取元素style特定property的值
+
+Get the value of style properties for the first element in the set of matched elements.
+
+
+复制代码 代码如下:
+
+
+var color = $( this ).css( "background-color" );
+
+ var styleProps = $( this ).css([
+    "width", "height", "color", "background-color"
+  ]);
+
+
+
+.css(propertyName,value) / .css( propertyName, function(index, value) ) / .css( propertiesJson ) 设置元素style特定property的值
+
+Set one or more CSS properties for the set of matched elements.
+
+
+复制代码 代码如下:
+
+
+$( "div.example" ).css( "width", function( index ) {
+  return index * 50;
+});
+
+$( this ).css( "width", "+=200" );
+
+
+$( this ).css( "background-color", "yellow" );
+
+   $( this ).css({
+      "background-color": "yellow",
+      "font-weight": "bolder"
+    });
+
+
+
+事件方法
+
+.bind( eventType [, eventData ], handler(eventObject) ) 绑定事件处理程序，这个经常用，不多解释
+
+Attach a handler to an event for the elements.
+
+
+复制代码 代码如下:
+
+
+$( "#foo" ).bind( "click", function() {
+  alert( "User clicked on 'foo.'" );
+});
+
+
+
+.delegate( selector, eventType, handler(eventObject) ) 这个看官方解释吧
+
+Attach a handler to one or more events for all elements that match the selector, now or in the future, based on a specific set of root elements.
+
+
+复制代码 代码如下:
+
+
+$( "table" ).on( "click", "td", function() {//这样把td的click事件处理程序绑在table上
+  $( this ).toggleClass( "chosen" );
+});
+
+
+
+.on( events [, selector ] [, data ], handler(eventObject) ) 1.7后推荐使用，取代bind、live、delegate
+
+Attach an event handler function for one or more events to the selected elements.
+
+
+复制代码 代码如下:
+
+
+$( "#dataTable tbody" ).on( "click", "tr", function() {
+  alert( $( this ).text() );
+});
+
+
+
+关于bind、live、delegate、on的区别可以看看 jQuery三种事件绑定方式.bind(),.live(),.delegate()
+
+.trigger( eventType [, extraParameters ] ) JavaScript出发元素绑定事件
+
+Execute all handlers and behaviors attached to the matched elements for the given event type.
+
+
+复制代码 代码如下:
+
+
+$( "#foo" ).trigger( "click" );
+
+
+
+.toggle( [duration ] [, complete ] ) / .toggle( options ) 隐藏或显示元素
+
+Display or hide the matched elements.
+
+
+复制代码 代码如下:
+
+
+$( ".target" ).toggle();$( "#clickme" ).click(function() {
+  $( "#book" ).toggle( "slow", function() {
+    // Animation complete.
+  });
+});
+
+
+
+动画/Ajax
+这两部分内容比较多，不是简单的一个function就可以的，这里只是列举一下常用方法名，关于其使用可以看看 jQuery API animation ajax ，或者 jQuery的动画处理总结，ASP.NET 使用Ajax动画
+
+queue/dequeue/clearQueue
+
+delay/stop
+
+fadeIn/fadeOut/fadeTo/fadeToggle
+
+slideUp/slideDown/slideToggle
+
+show/hide 
+
+Ajax
+
+$.ajax
+
+$.load
+
+$.get
+
+最后
+
+了解了上面这些内容，使用jQuery进行web开发的时候就可以体验到jQuery的威力了。本文不是jQuery学习指南，仅仅是个常用方法介绍，如果大家想学习jQuery，最好的教材还是jQuery API，本文中示例与英文解释全部来源于jQuery API。 另外文中介绍内容远远不是jQuery全部，但是首先掌握了这些可以对jQuery有一个比较全面的认识，然后再学习其他内容的时候就可以游刃有余了。
+ 
